@@ -2,6 +2,7 @@ package main
 
 import (
 	"fralla/config"
+	"fralla/db"
 	"fralla/routes"
 	"log"
 	"os"
@@ -13,6 +14,7 @@ import (
 func main() {
 
 	config.LoadEnv()
+	db.ConnectDB()
 
 	app := fiber.New(fiber.Config{
 		Network: fiber.NetworkTCP,
