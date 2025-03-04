@@ -7,17 +7,20 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func IsAuthenticated(c *fiber.Ctx) (dto.Visitor, bool) {
+func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
 
 	token := c.Cookies("session")
 	_, err := VerifyToken(token)
-	var jwt dto.Visitor
+	var jwt dto.Token
 	if err == nil {
-		jwt, _ := GetTokenVisitor(c)
+		jwt, _ := GetToken(c)
 		return jwt, jwt.IsAuth
 	} else {
-		jwt = dto.Visitor{}
-		CreateTokenVisitor(jwt)
+		jwt = dto.Token{
+			Level: "VISITOR",
+			IP:    c.IP(),
+		}
+		CreateToken(jwt)
 	}
 	return jwt, jwt.IsAuth
 
