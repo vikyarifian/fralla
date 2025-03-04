@@ -1,8 +1,9 @@
 package dto
 
-type Visitor struct {
+type Token struct {
 	No        int    `gorm:"column:no;primaryKey" json:"-,omitempty" form:"-"`
 	ID        string `gorm:"column:id;unique" json:"id,omitempty" form:"id"`
+	IP        string `gorm:"column:ip" json:"ip,omitempty" form:"ip"`
 	Username  string `gorm:"column:username;unique" json:"username,omitempty" form:"username"`
 	FirstName string `gorm:"column:first_name;" json:"first_name,omitempty" form:"first_name"`
 	LastName  string `gorm:"column:last_name;" json:"last_name,omitempty" form:"last_name"`
