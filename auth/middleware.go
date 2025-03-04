@@ -20,7 +20,14 @@ func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
 			Level: "VISITOR",
 			IP:    c.IP(),
 		}
-		CreateToken(jwt)
+		auth_token, _ := CreateToken(jwt)
+		c.Cookie(&fiber.Cookie{
+			Name:     "session",
+			Value:    auth_token,
+			HTTPOnly: true,
+			Secure:   true,
+			SameSite: "Strict",
+		})
 	}
 	return jwt, jwt.IsAuth
 

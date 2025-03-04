@@ -12,7 +12,7 @@ type Category struct {
 	UpdatedBy string     `gorm:"column:updated_by" json:"updated_by,omitempty" form:"updated_by"`
 }
 
-// CREATE TABLE `categories` (
+// CREATE TABLE categories (
 //  no SERIAL PRIMARY KEY NOT NULL,
 // 	id VARCHAR(128) NOT NULL DEFAULT '0',
 // 	name VARCHAR(100) NOT NULL,

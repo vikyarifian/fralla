@@ -11,6 +11,12 @@ import (
 func SetRoutes(app *fiber.App) {
 	DashboardRoute(app)
 	PageRoute(app)
+
+	app.Get("/logout", func(c *fiber.Ctx) error {
+		auth.ClearSession(c)
+		c.Response().Header.Set("HX-Redirect", "/")
+		return c.Redirect("/")
+	})
 }
 
 func DashboardRoute(app *fiber.App) {
