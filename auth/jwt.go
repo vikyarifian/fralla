@@ -5,13 +5,16 @@ import (
 	"fralla/db"
 	"fralla/dto"
 	"fralla/models"
+	"fralla/utils"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
+	"gorm.io/gorm"
 )
 
 var (
@@ -20,9 +23,24 @@ var (
 
 func CreateToken(token dto.Token) (string, error) {
 
+	var no int64
+	db.PgSql.Session(&gorm.Session{PrepareStmt: true})
+
+	db.PgSql.Table("public.visitors").Select("max(no)").Row().Scan(&no)
+
+	idhash := utils.GetMD5Hash(strconv.Itoa(int(no) + 1))
+	visitor := models.Visitor{
+		No:        int(no) + 1,
+		ID:        idhash,
+		IP:        token.IP,
+		IsAuth:    false,
+		CreatedBy: "System",
+		UpdatedBy: "System",
+	}
+
 	claims := jwt.MapClaims{
-		"id":         token.ID,
-		"username":   token.Username,
+		"id":         int(no) + 1,
+		"username":   idhash,
 		"first_name": cases.Title(language.English, cases.Compact).String(token.FirstName),
 		"last_name":  cases.Title(language.English, cases.Compact).String(token.LastName),
 		"email":      token.Email,
@@ -37,22 +55,9 @@ func CreateToken(token dto.Token) (string, error) {
 	}
 
 	if strings.Trim(token.Level, " ") == "VISITOR" {
-		visitor := models.Visitor{
-			IP:        token.IP,
-			Token:     tokenString,
-			IsAuth:    false,
-			CreatedBy: "System",
-			UpdatedBy: "System",
-		}
-
-		// maxId := db.PgSql.Table("visitors").Select("max(no)").Row()
-		// _ = maxId.Scan(&visitor.No)
-		// idhash := utils.GetMD5Hash(strconv.Itoa(visitor.No + 1))
-		// visitor.No = visitor.No + 1
-		// visitor.ID = idhash
-		db.PgSql.Save(&visitor)
+		visitor.Token = tokenString
+		db.PgSql.Create(&visitor)
 	}
-
 	return tokenString, nil
 }
 
