@@ -18,7 +18,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 func handler() http.HandlerFunc {
 
-	db.ConnectDB()
+	db.ConnectDBVercel()
 
 	app := fiber.New(fiber.Config{
 		Network: fiber.NetworkTCP,

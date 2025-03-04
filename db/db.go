@@ -20,3 +20,14 @@ func ConnectDB() {
 	}
 
 }
+
+func ConnectDBVercel() {
+
+	var err error
+	dsn := "postgres://postgres.akqzqmwrlvegatfgbweu:QPIjWeXg6GT2mHGK@aws-0-ap-southeast-1.pooler.supabase.com:6543/db_fralla?sslmode=require&supa=base-pooler.x"
+	PgSql, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Failed to connect to database!")
+	}
+
+}
