@@ -5,9 +5,7 @@ import (
 	"fralla/db"
 	"fralla/dto"
 	"fralla/models"
-	"fralla/utils"
 	"os"
-	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -47,11 +45,11 @@ func CreateToken(token dto.Token) (string, error) {
 			UpdatedBy: "System",
 		}
 
-		maxId := db.PgSql.Table("visitors").Select("max(no)").Row()
-		_ = maxId.Scan(&visitor.No)
-		idhash := utils.GetMD5Hash(strconv.Itoa(visitor.No + 1))
-		visitor.No = visitor.No + 1
-		visitor.ID = idhash
+		// maxId := db.PgSql.Table("visitors").Select("max(no)").Row()
+		// _ = maxId.Scan(&visitor.No)
+		// idhash := utils.GetMD5Hash(strconv.Itoa(visitor.No + 1))
+		// visitor.No = visitor.No + 1
+		// visitor.ID = idhash
 		db.PgSql.Save(&visitor)
 	}
 
