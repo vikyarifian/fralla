@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fralla/db"
 	"fralla/routes"
 	"net/http"
 
@@ -16,6 +17,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func handler() http.HandlerFunc {
+
+	db.ConnectDB()
 
 	app := fiber.New(fiber.Config{
 		Network: fiber.NetworkTCP,
