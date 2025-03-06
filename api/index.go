@@ -3,13 +3,11 @@ package handler
 import (
 	"fralla/db"
 	"fralla/routes"
-	"log"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/adaptor"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/joho/godotenv"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -20,9 +18,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 func handler() http.HandlerFunc {
 
-	if err := godotenv.Load("./.env"); err != nil {
-		log.Fatal("Error Loading Env")
-	}
 	db.ConnectDBVercel()
 
 	app := fiber.New(fiber.Config{

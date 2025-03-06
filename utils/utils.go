@@ -25,6 +25,6 @@ func GetMD5Hash(text string) string {
 }
 
 func GetLocationTime() *time.Location {
-	loc, _ := time.LoadLocation(os.Getenv("TIMEZONE"))
+	loc, _ := time.LoadLocation(os.Getenv("Asia/Jakarta"))
 	return loc
 }
