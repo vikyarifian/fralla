@@ -30,10 +30,16 @@ func CreateToken(token dto.Token) (string, error) {
 	db.PgSql.Table("public.visitors").Select("max(no)").Row().Scan(&no)
 
 	idhash := utils.GetMD5Hash(strconv.Itoa(int(no) + 1))
+
+	if strings.Trim(token.Username, " ") == "" {
+		token.Username = idhash
+	}
+	println(func(t time.Time) *time.Time { return &t }(time.Now().In(utils.GetLocationTime())))
 	visitor := models.Visitor{
 		No:        int(no) + 1,
 		ID:        idhash,
 		IP:        token.IP,
+		Username:  token.Username,
 		IsAuth:    false,
 		CreatedBy: "System",
 		CreatedAt: func(t time.Time) *time.Time { return &t }(time.Now().In(utils.GetLocationTime())),
@@ -43,12 +49,13 @@ func CreateToken(token dto.Token) (string, error) {
 
 	claims := jwt.MapClaims{
 		"id":         int(no) + 1,
-		"username":   idhash,
+		"username":   token.Username,
 		"first_name": cases.Title(language.English, cases.Compact).String(token.FirstName),
 		"last_name":  cases.Title(language.English, cases.Compact).String(token.LastName),
 		"email":      token.Email,
 		"phone":      token.Phone,
 		"level":      token.Level,
+		"popup_show": strconv.FormatBool(token.PopUpShow),
 	}
 
 	auth_token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -57,7 +64,7 @@ func CreateToken(token dto.Token) (string, error) {
 		return "", err
 	}
 
-	if strings.Trim(token.Level, " ") == "VISITOR" {
+	if token.Token == "" {
 		visitor.Token = tokenString
 		db.PgSql.Create(&visitor)
 	}
@@ -72,6 +79,7 @@ func GetToken(c *fiber.Ctx) (dto.Token, error) {
 		return token, err
 	}
 
+	popup_show, _ := strconv.ParseBool(fmt.Sprintf("%s", claims["popup_show"]))
 	token = dto.Token{
 		IP:        c.IP(),
 		Username:  fmt.Sprintf("%s", claims["username"]),
@@ -80,6 +88,7 @@ func GetToken(c *fiber.Ctx) (dto.Token, error) {
 		Level:     fmt.Sprintf("%s", claims["level"]),
 		Token:     c.Get("Authorization"),
 		IsAuth:    false,
+		PopUpShow: popup_show,
 	}
 
 	if strings.Trim(token.Level, " ") == "USER" || strings.Trim(token.Level, " ") == "ADMIN" {
