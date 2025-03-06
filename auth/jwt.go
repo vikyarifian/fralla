@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt"
@@ -35,7 +36,9 @@ func CreateToken(token dto.Token) (string, error) {
 		IP:        token.IP,
 		IsAuth:    false,
 		CreatedBy: "System",
+		CreatedAt: func(t time.Time) *time.Time { return &t }(time.Now().In(utils.GetLocationTime())),
 		UpdatedBy: "System",
+		UpdatedAt: func(t time.Time) *time.Time { return &t }(time.Now().In(utils.GetLocationTime())),
 	}
 
 	claims := jwt.MapClaims{

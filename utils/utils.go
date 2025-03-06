@@ -3,6 +3,8 @@ package utils
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"os"
+	"time"
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
@@ -20,4 +22,9 @@ func Render(c *fiber.Ctx, component templ.Component, options ...func(*templ.Comp
 func GetMD5Hash(text string) string {
 	hash := md5.Sum([]byte(text))
 	return hex.EncodeToString(hash[:])
+}
+
+func GetLocationTime() *time.Location {
+	loc, _ := time.LoadLocation(os.Getenv("TIMEZONE"))
+	return loc
 }
