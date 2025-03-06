@@ -12,4 +12,5 @@ type Token struct {
 	Level     string `gorm:"column:level" json:"level,omitempty" form:"level"`
 	Token     string `json:"auth_token"`
 	IsAuth    bool   `json:"is_auth"`
+	PopUpShow bool   `json:"popup_show"`
 }

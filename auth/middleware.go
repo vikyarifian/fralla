@@ -9,18 +9,19 @@ import (
 
 func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
 
-	token := c.Cookies("session")
-	_, err := VerifyToken(token)
-	var jwt dto.Token
+	auth_token := c.Cookies("session")
+	_, err := VerifyToken(auth_token)
+	var token dto.Token
 	if err == nil {
 		jwt, _ := GetToken(c)
 		return jwt, jwt.IsAuth
 	} else {
-		jwt = dto.Token{
+		token = dto.Token{
+			Token: "",
 			Level: "VISITOR",
 			IP:    c.IP(),
 		}
-		auth_token, _ := CreateToken(jwt)
+		auth_token, _ := CreateToken(token)
 		c.Cookie(&fiber.Cookie{
 			Name:     "session",
 			Value:    auth_token,
@@ -29,7 +30,7 @@ func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
 			SameSite: "Strict",
 		})
 	}
-	return jwt, jwt.IsAuth
+	return token, token.IsAuth
 
 }
 
@@ -59,17 +60,17 @@ func GetUserSessionId(c *fiber.Ctx) string {
 	return c.Cookies("session")
 }
 
-func SetSession(c *fiber.Ctx) string {
-	newSessionId := c.Get("Authorization")
-	c.Cookie(&fiber.Cookie{
-		Name:     "session",
-		Value:    newSessionId,
-		HTTPOnly: true,
-		Secure:   true,
-		SameSite: "Strict",
-	})
-	return newSessionId
-}
+// func SetSession(c *fiber.Ctx) string {
+// 	newSessionId := c.Get("Authorization")
+// 	c.Cookie(&fiber.Cookie{
+// 		Name:     "session",
+// 		Value:    newSessionId,
+// 		HTTPOnly: true,
+// 		Secure:   true,
+// 		SameSite: "Strict",
+// 	})
+// 	return newSessionId
+// }
 
 func ClearSession(c *fiber.Ctx) {
 	c.Cookie(&fiber.Cookie{

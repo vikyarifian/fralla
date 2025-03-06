@@ -5,6 +5,7 @@ import "time"
 type Visitor struct {
 	No        int        `gorm:"column:no;primaryKey" json:"-,omitempty" form:"-"`
 	ID        string     `gorm:"column:id;unique" json:"id,omitempty" form:"id"`
+	Username  string     `gorm:"column:username;unique" json:"username,omitempty" form:"username"`
 	IP        string     `gorm:"column:ip" json:"ip,omitempty" form:"ip"`
 	Token     string     `gorm:"column:token" json:"auth_token"`
 	IsAuth    bool       `gorm:"is_auth" json:"is_auth"`
@@ -17,6 +18,8 @@ type Visitor struct {
 // CREATE TABLE visitors (
 // 	no SERIAL PRIMARY KEY,
 // 	id VARCHAR(128) NOT NULL DEFAULT '0',
+// 	username VARCHAR(50) NOT NULL DEFAULT ' ',
+// 	ip VARCHAR(50) NOT NULL DEFAULT ' ',
 // 	token VARCHAR(256) NOT NULL DEFAULT ' ',
 // 	is_auth BOOLEAN DEFAULT FALSE,
 // 	created_at TIMESTAMP DEFAULT NOW(),
