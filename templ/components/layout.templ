@@ -8,6 +8,37 @@ templ Layout(title string, token dto.Token, isAuth bool) {
         <script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script>
         @Head(title)
         <style>
+            @media screen and (max-width: 480px) {
+                .banner_fp1 {
+                    visibility: hidden;
+                    display: none;
+                }
+            }
+            @media screen and (max-width: 480px) {
+                .banner_fp2 {
+                    visibility: show;
+                    display: block;
+                }
+            }
+            @media screen and (min-width: 480px) {
+                .banner_fp2 {
+                    visibility: hidden;
+                    display: none;
+                }
+                .header-7 {
+                    padding-left: 4rem;
+                }
+            }
+            @media screen and (max-width: 1000px) {
+                .header-7 {
+                    padding-left: 1rem;
+                }
+            }
+            @media screen and (max-width: 1000px) {
+                .header-7 {
+                    padding-left: 1rem;
+                }
+            }
             /* Absolute Center Spinner */
 			.screenloading {
 				position: fixed;
@@ -177,7 +208,7 @@ templ Layout(title string, token dto.Token, isAuth bool) {
 				background: transparent;
 			}
         </style>
-        <body>
+        <body style="font: normal 200 1.2rem / 1.46 'Poppins', sans-serif;">
             <div class="page-wrapper">
                 
                 @Header(token)
@@ -205,75 +236,34 @@ templ Layout(title string, token dto.Token, isAuth bool) {
 
                     <form action="#" method="get" class="mobile-search">
                         <label for="mobile-search" class="sr-only">Search</label>
-                        <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+                        <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search product..." required>
                         <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                     </form>
                     
                     <nav class="mobile-nav">
-                        <ul class="mobile-menu sf-arrows">
-                            <li class="active">
-                                <a href="/">Home</a>
+                        <ul class="mobile-menu">
+                            <li>
+                                <a href="#" style="text-transform:none">Shop</a>
                             </li>
                             <li>
-                                <a href="#">Shop</a>
-                                <ul>
-                                    <li><a href="#">Shop Women's</a></li>
-                                    <li><a href="#">Shop Kid's</a></li>
-                                    <li><a href="/category">Category</a></li>
-                                    <li><a href="/cart">Cart</a></li>
-                                    <li><a href="/checkout">Checkout</a></li>
-                                    <li><a href="/wishlist">Wishlist</a></li>
-                                </ul>
+                                <a href="#" style="text-transform:none">About</a>
                             </li>
                             <li>
-                                <a href="#" class="sf-with-ul">Product</a>
-                                <ul>
-                                    <li><a href="#">Spring 2024</a></li>
-                                    <li><a href="#">Summer 2024</a></li>
-                                    <li><a href="#">Fall 2024</a></li>
-                                    <li><a href="#">Winter 2024</a></li>
-                                    <li><a href="#">Spring 2025</a></li>
-                                    <li><a href="#"><span>Summer 2025<span class="tip tip-new">New</span></span></a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li>
-                                        <a href="/about">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="/contact">Contact</a>
-                                    </li>
-                                    <li><a href="/login">Login</a></li>
-                                    <li><a href="/faq.html">FAQs</a></li>
-                                    <li><a href="/coming-soon">Coming Soon</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Blog</a>
-                                <ul>
-                                    <li>
-                                        <a href="/blogs?category=fashion">Fashion</a>
-                                    </li>
-                                    <li>
-                                        <a href="/blogs?category=fashion">Lifestyle</a>
-                                    </li>
-                                </ul>
+                                <a href="#" style="text-transform:none">Contact</a>
                             </li>
                         </ul>
                     </nav><!-- End .mobile-nav -->
 
-                    <div class="social-icons" style="text-align: left;">
-                        // <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                        // <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                        <a href="https://www.instagram.com/frallaofficial" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                        &nbsp;Fralla Official
-                    </div>
-                    <div class="social-icons" style="text-align: left;">
-                        <a href="https://www.instagram.com/frallakids" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                        &nbsp;Fralla Kids
-                    </div><!-- End .social-icons -->
+                    // <div class="social-icons" style="text-align: left;">
+                    //     // <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                    //     // <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                    //     <a href="https://www.instagram.com/frallaofficial" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                    //     &nbsp;Fralla Official
+                    // </div>
+                    // <div class="social-icons" style="text-align: left;">
+                    //     <a href="https://www.instagram.com/frallakids" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                    //     &nbsp;Fralla Kids
+                    // </div><!-- End .social-icons -->
                 </div><!-- End .mobile-menu-wrapper -->
             </div><!-- End .mobile-menu-container -->
 

@@ -30,7 +30,7 @@ func DashboardRoute(app *fiber.App) {
 
 func PageRoute(app *fiber.App) {
 	app.Get("/", func(c *fiber.Ctx) error {
-		return utils.Render(c, pages.FrontPage(auth.IsAuthenticated(c)))
+		return utils.Render(c, pages.FrontPage2(auth.IsAuthenticated(c)))
 	})
 	app.Get("/401", func(c *fiber.Ctx) error {
 		return utils.Render(c, pages.Forbidden(auth.IsAuthenticated(c)))
