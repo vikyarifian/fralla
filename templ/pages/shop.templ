@@ -1,0 +1,393 @@
+package pages
+
+import (
+    "fralla/dto"
+    "fralla/templ/components"
+)
+
+templ Shop(token dto.Token) {
+    @components.Layout("Shop", token) {
+        @components.Menu(token)
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="toolbox">
+                    
+                    <div class="toolbox-center">
+                        <div class="toolbox-info">
+                            Showing <span>12 of 56</span> Products
+                        </div><!-- End .toolbox-info -->
+                    </div><!-- End .toolbox-center -->
+
+                    <div class="toolbox-right">
+                        <div class="toolbox-sort">
+                            <label for="sortby">Sort by:</label>
+                            <div class="select-custom">
+                                <select name="sortby" id="sortby" class="form-control">
+                                    <option value="popularity" selected="selected">Most Popular</option>
+                                    <option value="rating">Most Rated</option>
+                                    <option value="date">Date</option>
+                                </select>
+                            </div>
+                        </div><!-- End .toolbox-sort -->
+                    </div><!-- End .toolbox-right -->
+                </div><!-- End .toolbox -->
+
+                <div class="products">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Alia_Dress-2.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Alia_Dress-3.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Alia Dress - Dusty Pink</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">Rp144.000</span>
+                                        <span class="old-price">Rp289.00</span>
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Alia_Dress-1.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Alia_Dress-8.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Alia Dress - Green</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">Rp144.000</span>
+                                        <span class="old-price">Rp289.00</span>
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Dayana_Raya_Collection-1.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Dayana_Raya_Collection-2.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Dayana Raya Collection</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp330.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Mimi_Dress-4.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Mimi_Dress-3.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Mimi Dress - Blue</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp330.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Myra_Dress-3.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Myra_Dress-2.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Myra Dress - Baby Blue</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp330.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Myra_Dress-6.jpg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Myra_Dress-7.jpg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Myra Dress - Dusty Pink</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp339.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Sofia_Dress-4.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Sofia_Dress-1.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Sofia - Dusty Pink</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp339.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                        <div class="col-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="#">
+                                        <img src="assets/images/products/kids/batch_1/Sofia_Dress-5.jpeg" alt="Product image" class="product-image">
+                                        <img src="assets/images/products/kids/batch_1/Sofia_Dress-2.jpeg" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    // <div class="product-action action-icon-top">
+                                    //     <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    //     <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                    //     <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
+                                    // </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Kids</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">Sofia - Baby Blue</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rp339.000
+                                    </div><!-- End .product-price -->
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 10 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+
+                                    // <div class="product-nav product-nav-dots">
+                                    //     <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                    //     <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    // </div><!-- End .product-nav -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+
+                    </div><!-- End .row -->
+
+                    <div class="load-more-container text-center">
+                        <a href="#" class="btn btn-outline-darker btn-load-more">More Products <i class="icon-refresh"></i></a>
+                    </div><!-- End .load-more-container -->
+                </div><!-- End .products -->
+                
+            </div><!-- End .container-fluid -->
+        </div><!-- End .page-content -->
+    }
+}

@@ -7,19 +7,20 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
+func IsAuthenticated(c *fiber.Ctx) dto.Token {
 
 	auth_token := c.Cookies("session")
 	_, err := VerifyToken(auth_token)
 	var token dto.Token
 	if err == nil {
 		jwt, _ := GetToken(c)
-		return jwt, jwt.IsAuth
+		return jwt
 	} else {
 		token = dto.Token{
-			Token: "",
-			Level: "VISITOR",
-			IP:    c.IP(),
+			Token:     "",
+			Level:     "VISITOR",
+			PopUpShow: true,
+			IP:        c.IP(),
 		}
 		auth_token, _ := CreateToken(token)
 		c.Cookie(&fiber.Cookie{
@@ -30,12 +31,12 @@ func IsAuthenticated(c *fiber.Ctx) (dto.Token, bool) {
 			SameSite: "Strict",
 		})
 	}
-	return token, token.IsAuth
+	return token
 
 }
 
 func AssertAuthenticatedMiddleware(c *fiber.Ctx) error {
-	if _, r := IsAuthenticated(c); !r {
+	if r := IsAuthenticated(c); !r.IsAuth {
 		c.Set("HX-Redirect", "/401")
 		return c.Redirect("/401")
 	}
@@ -43,8 +44,8 @@ func AssertAuthenticatedMiddleware(c *fiber.Ctx) error {
 }
 
 func AssertAdminAuthenticatedMiddleware(c *fiber.Ctx) error {
-	token, r := IsAuthenticated(c)
-	if !r {
+	token := IsAuthenticated(c)
+	if !token.IsAuth {
 		c.Set("HX-Redirect", "/401")
 		return c.Redirect("/401")
 	} else {

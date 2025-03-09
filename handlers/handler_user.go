@@ -8,6 +8,7 @@ import (
 	"fralla/templ/components"
 	"fralla/utils"
 	"log"
+	"math/rand/v2"
 	"net/http"
 	"strconv"
 	"strings"
@@ -22,38 +23,40 @@ func HandleRegister(c *fiber.Ctx) error {
 	var users []models.User
 	var newUser models.User
 	var count int64
-	username := c.FormValue("username")
+
 	email := c.FormValue("email")
 	phone := c.FormValue("phone")
 	password := c.FormValue("password")
+	split := strings.Index(email, "@")
+	username := email[0:split]
+
 	err := db.PgSql.Where("username=? or email=? or phone=?", username, email, phone).Find(&users).Count(&count).Error
 	if err != nil {
 		return utils.Render(c, components.ErrorAlert(err.Error(), "register"), templ.WithStatus(http.StatusBadRequest))
 	}
 	if count > 0 {
-		msg := ""
 		for _, user := range users {
 			if strings.Trim(user.Username, " ") == strings.Trim(username, " ") {
-				if msg != "" {
-					msg = msg + ", "
-				}
-				msg = "Username"
+				username = username + strings.Trim(strconv.Itoa(rand.IntN(99)), " ")
 			}
+		}
+		msg := ""
+		for _, user := range users {
 			if strings.Trim(user.Email, " ") == strings.Trim(email, " ") {
 				if msg != "" {
 					msg = msg + ", "
 				}
 				msg = msg + "Email"
+				return utils.Render(c, components.ErrorAlert(msg+" already exist!", "register"), templ.WithStatus(http.StatusBadRequest))
 			}
 			if strings.Trim(user.Phone, " ") == strings.Trim(phone, " ") {
 				if msg != "" {
 					msg = msg + ", "
 				}
 				msg = msg + "Phone"
+				return utils.Render(c, components.ErrorAlert(msg+" already exist!", "register"), templ.WithStatus(http.StatusBadRequest))
 			}
 		}
-
-		return utils.Render(c, components.ErrorAlert(msg+" already exist!", "register"), templ.WithStatus(http.StatusBadRequest))
 	}
 
 	if len(strings.Trim(password, " ")) < 6 {
@@ -74,7 +77,7 @@ func HandleRegister(c *fiber.Ctx) error {
 	newUser.Phone = phone
 	newUser.No = no + 1
 	newUser.ID = idhash
-	newUser.Level = "user"
+	newUser.Level = "USER"
 	newUser.CreatedAt = &t
 	newUser.CreatedBy = newUser.Username
 	newUser.UpdatedAt = &t
@@ -89,9 +92,9 @@ func HandleRegister(c *fiber.Ctx) error {
 }
 
 func HandleLogin(c *fiber.Ctx) error {
-	username := c.FormValue("username")
+	email_phone := c.FormValue("email_phone")
 	var user models.User
-	err := db.PgSql.Where("username=? or email=?", username, username).First(&user).Error
+	err := db.PgSql.Where("phone=? or email=?", email_phone, email_phone).First(&user).Error
 	if err != nil {
 		log.Println(err.Error())
 		return utils.Render(c, components.ErrorAlert("Bad Credentials", "login"), templ.WithStatus(http.StatusBadRequest))

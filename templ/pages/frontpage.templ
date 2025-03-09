@@ -5,8 +5,8 @@ import (
     "fralla/templ/components"
 )
 
-templ FrontPage(token dto.Token, isAuth bool) {
-    @components.Layout("", token, isAuth) {
+templ FrontPage(token dto.Token) {
+    @components.Layout("", token) {
         <div class="container-fluid">
             <div class="row">
 

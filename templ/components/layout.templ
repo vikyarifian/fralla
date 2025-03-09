@@ -2,7 +2,7 @@ package components
 
 import "fralla/dto"
 
-templ Layout(title string, token dto.Token, isAuth bool) {
+templ Layout(title string, token dto.Token) {
     <!DOCTYPE html>
     <html lang="en">
         <script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script>
@@ -243,7 +243,7 @@ templ Layout(title string, token dto.Token, isAuth bool) {
                     <nav class="mobile-nav">
                         <ul class="mobile-menu">
                             <li>
-                                <a href="#" style="text-transform:none">Shop</a>
+                                <a href="/shop" style="text-transform:none">Shop</a>
                             </li>
                             <li>
                                 <a href="#" style="text-transform:none">About</a>
@@ -289,19 +289,28 @@ templ Layout(title string, token dto.Token, isAuth bool) {
                                         </ul>
                                         <div class="tab-content" id="tab-content-5">
                                             <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                                <form action="#">
+                                                <form id="login-form"
+                                                    hx-disabled-elt="#login-button"
+                                                    hx-post="/login"               
+                                                    hx-swap="none"
+                                                    hx-on::before-request="document.getElementById('error_login').innerHTML = ''"
+                                                    hx-target-400="#error_login"
+                                                    hx-indicator=".htmx-loader">
                                                     <div class="form-group">
-                                                        <label for="singin-email">Username or email address *</label>
-                                                        <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                                        <label for="singin-email_phone">Phone or email address *</label>
+                                                        <input type="text" class="form-control" id="singin-email_phone" name="email_phone" required>
                                                     </div><!-- End .form-group -->
 
                                                     <div class="form-group">
                                                         <label for="singin-password">Password *</label>
-                                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                                        <input type="password" class="form-control" id="singin-password" name="password" required>
                                                     </div><!-- End .form-group -->
 
+                                                    <span id="error_login"></span>
+                                                    <span id="success_login"></span>    
+
                                                     <div class="form-footer">
-                                                        <button type="submit" class="btn btn-outline-primary-2">
+                                                        <button id="login-button" type="submit" class="btn btn-outline-primary-2">
                                                             <span>LOG IN</span>
                                                             <i class="icon-long-arrow-right"></i>
                                                         </button>
@@ -333,19 +342,39 @@ templ Layout(title string, token dto.Token, isAuth bool) {
                                                 </div><!-- End .form-choice -->
                                             </div><!-- .End .tab-pane -->
                                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                                <form action="#">
+                                                <form id="register-form"
+                                                    hx-disabled-elt="#register-button"
+                                                    hx-post="/register"
+                                                    hx-swap="none"
+                                                    hx-on::before-request="document.getElementById('error_register').innerHTML = '';document.getElementById('success_register').innerHTML = ''"
+                                                    hx-on::after-request="if(event.detail.xhr.status==200) {
+                                                                                document.getElementById('register-email').value = '';document.getElementById('register-phone').value = '';
+                                                                                document.getElementById('register-password').value = '';
+                                                                            }"
+                                                    hx-target-400="#error_register"
+                                                    hx-indicator=".htmx-loader">
                                                     <div class="form-group">
                                                         <label for="register-email">Your email address *</label>
-                                                        <input type="email" class="form-control" id="register-email" name="register-email" required>
+                                                        <input type="email" class="form-control" id="register-email" name="email" required>
+                                                    </div><!-- End .form-group -->
+
+                                                    <div class="form-group">
+                                                        <label for="register-phone">Your phone number*</label>
+                                                        <input type="phone" class="form-control" id="register-phone" name="phone" required>
                                                     </div><!-- End .form-group -->
 
                                                     <div class="form-group">
                                                         <label for="register-password">Password *</label>
-                                                        <input type="password" class="form-control" id="register-password" name="register-password" required>
+                                                        <input type="password" class="form-control" id="register-password" name="password" required>
                                                     </div><!-- End .form-group -->
 
+                                                    <div class="htmx-indicator"></div>
+
+                                                    <span id="error_register"></span>
+                                                    <span id="success_register"></span>   
+
                                                     <div class="form-footer">
-                                                        <button type="submit" class="btn btn-outline-primary-2">
+                                                        <button id="register-button" type="submit" class="btn btn-outline-primary-2">
                                                             <span>SIGN UP</span>
                                                             <i class="icon-long-arrow-right"></i>
                                                         </button>
@@ -410,7 +439,11 @@ templ Layout(title string, token dto.Token, isAuth bool) {
                                             </div><!-- .End .input-group -->
                                         </form>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                            <input type="checkbox" class="custom-control-input" id="register-policy-2" name="popup"
+                                                hx-get="/hide-popup"
+                                                hx-swap="none"
+                                                hx-trigger="click"
+                                            >
                                             <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
                                         </div><!-- End .custom-checkbox -->
                                     </div>
@@ -440,5 +473,15 @@ templ Layout(title string, token dto.Token, isAuth bool) {
             <script src="assets/js/demos/demo-7.js"></script>
             
         </body>
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.body.addEventListener('htmx:beforeSwap', function(evt) {
+                    if (evt.detail.xhr.status === 400) {
+                        evt.detail.shouldSwap = true;
+                        evt.detail.isError = false;
+                    }
+                });
+            })	
+        </script>
     </html>
 }

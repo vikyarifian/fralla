@@ -13,7 +13,7 @@ import (
 	"fralla/templ/components"
 )
 
-func About(token dto.Token, isAuth bool) templ.Component {
+func About(token dto.Token) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -46,13 +46,17 @@ func About(token dto.Token, isAuth bool) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav aria-label=\"breadcrumb\" class=\"breadcrumb-nav mb-3\"><div class=\"container\"><ol class=\"breadcrumb\"><li class=\"breadcrumb-item\"><a href=\"/\">Home</a></li><li class=\"breadcrumb-item\"><a href=\"#\">Pages</a></li><li class=\"breadcrumb-item active\" aria-current=\"page\">About us</li></ol></div><!-- End .container --></nav><!-- End .breadcrumb-nav --> <div class=\"container\"><div class=\"page-header page-header-big text-center\" style=\"background-image: url(&#39;assets/images/slider/slide-1.jpg&#39;)\"><h1 class=\"page-title text-white\">About us<span class=\"text-white\">who we are</span></h1></div><!-- End .page-header --></div><!-- End .container -->  <div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 mb-3 mb-lg-0\"><h2 class=\"\">Fralla Fashion</h2><!-- End .title --><p class=\"lead text-primary mb-3\">Tempat Tepat untuk Si Kecil dan Gaya Elegan untuk Anda </p><!-- End .lead text-primary --><p class=\"mb-2\">Fralla Fashion adalah destinasi eCommerce yang menghadirkan koleksi baju anak berkualitas dan aksesoris wanita elegan dalam satu tempat. Kami memahami bahwa kenyamanan dan gaya adalah prioritas, baik untuk si kecil maupun para wanita yang ingin tampil modis dalam setiap kesempatan.<br>Kenapa Belanja di Fralla Fashion?<br>✔ Baju Anak Nyaman & Stylish – Koleksi pakaian anak dengan desain menggemaskan, bahan lembut, dan aman untuk kulit si kecil.<br>✔ Aksesoris Wanita yang Elegan – Dari kalung, gelang dan aksesoris lainnya untuk melengkapi tampilan Anda.<br>✔ Kualitas Terbaik – Produk dipilih dengan standar tinggi untuk memastikan kepuasan pelanggan.<br>✔ Belanja Praktis & Aman – Proses belanja mudah dan pengiriman cepat ke seluruh Indonesia.<br><br>💖 Fralla Fashion – Untuk Si Kecil & Untuk Anda, dengan Gaya dan Cinta! 💖 </p></div><!-- End .col-lg-5 --><div class=\"col-lg-6 offset-lg-1\"><div class=\"about-images\"><img src=\"assets/images/about/img-3.png\" style=\"border: 0cap;\" alt=\"\" class=\"about-img-front\"> <img src=\"assets/images/about/img-4.png\" style=\"border: 0cap;\" alt=\"\" class=\"about-img-back\"></div><!-- End .about-images --></div><!-- End .col-lg-6 --></div><!-- End .row --></div><!-- End .container --> ")
+			templ_7745c5c3_Err = components.Menu(token).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "          <div class=\"mb-6 mb-lg-8\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-8 mb-3 mb-lg-0 pr-10 pl-10\" style=\"padding: 5rem 5rem 0 5rem;font-size:1.4rem;color:#000;\"><p class=\"mb-2\"><b>Fralla</b> adalah destinasi yang menghadirkan koleksi baju anak berkualitas dan aksesoris wanita elegan dalam satu tempat. Kami memahami bahwa kenyamanan dan gaya adalah prioritas, baik untuk si kecil maupun para wanita yang ingin tampil modis dalam setiap kesempatan.<br><br>Kenapa Belanja di Fralla?<ul style=\"list-style-type: circle;\"><li>Baju Anak Nyaman & Stylish – Koleksi pakaian anak dengan desain menggemaskan, bahan lembut, dan aman untuk kulit si kecil.</li><li>Aksesoris Wanita yang Elegan – Dari kalung, gelang dan aksesoris lainnya untuk melengkapi tampilan Anda.</li><li>Kualitas Terbaik – Produk dipilih dengan standar tinggi untuk memastikan kepuasan pelanggan.</li><li>Belanja Praktis & Aman – Proses belanja mudah dan pengiriman cepat ke seluruh Indonesia.</li></ul><br>Fralla – Untuk Si Kecil & Untuk Anda, dengan Gaya dan Cinta! </p></div><!-- End .col-lg-5 --><div class=\"col-lg-6 offset-lg-1\"><div class=\"about-images\"></div><!-- End .about-images --></div><!-- End .col-lg-6 --></div><!-- End .row --></div><!-- End .container --></div><!-- End .bg-light-2 pt-6 pb-6 -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = components.Layout("About", token, isAuth).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Layout("About", token).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
