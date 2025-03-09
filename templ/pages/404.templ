@@ -5,8 +5,8 @@ import (
     "fralla/templ/components"
 )
 
-templ NotFound(token dto.Token, isAuth bool) {
-    @components.Layout("404", token, isAuth) {
+templ NotFound(token dto.Token) {
+    @components.Layout("404", token) {
         <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
             <div class="container">
                 <ol class="breadcrumb">

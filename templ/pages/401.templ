@@ -5,8 +5,8 @@ import (
     "fralla/templ/components"
 )
 
-templ Forbidden(token dto.Token, isAuth bool) {
-    @components.Layout("401", token, isAuth) {
+templ Forbidden(token dto.Token) {
+    @components.Layout("401", token) {
         <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
             <div class="container">
                 <ol class="breadcrumb">

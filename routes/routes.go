@@ -2,6 +2,7 @@ package routes
 
 import (
 	"fralla/auth"
+	"fralla/handlers"
 	"fralla/templ/pages"
 	"fralla/utils"
 
@@ -11,6 +12,7 @@ import (
 func SetRoutes(app *fiber.App) {
 	DashboardRoute(app)
 	PageRoute(app)
+	HandleRoute(app)
 
 	app.Get("/logout", func(c *fiber.Ctx) error {
 		auth.ClearSession(c)
@@ -38,4 +40,13 @@ func PageRoute(app *fiber.App) {
 	app.Get("/about", func(c *fiber.Ctx) error {
 		return utils.Render(c, pages.About(auth.IsAuthenticated(c)))
 	})
+	app.Get("/shop", func(c *fiber.Ctx) error {
+		return utils.Render(c, pages.Shop(auth.IsAuthenticated(c)))
+	})
+}
+
+func HandleRoute(app *fiber.App) {
+	app.Post("/register", handlers.HandleRegister)
+	app.Post("/login", handlers.HandleLogin)
+	app.Get("/hide-popup", handlers.HidePopUp)
 }

@@ -54,4 +54,33 @@ func Header(token dto.Token) templ.Component {
 	})
 }
 
+func Menu(token dto.Token) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<header class=\"header header-7\" style=\"z-index: 98;background:transparent; padding-right: 2rem;\"><div class=\"header-middle sticky-header\"><div class=\"container-fluid\"><div class=\"header-left\"><button class=\"mobile-menu-toggler\" style=\"font-size: 1.8em;\"><span class=\"sr-only\">Toggle mobile menu</span> <i class=\"icon-bars\"></i></button> <a href=\"/\" class=\"logo\"><img src=\"assets/images/logo/fralla-logo.png\" alt=\"Fralla Logo\" width=\"78\" height=\"18\"></a><nav class=\"main-nav\"><ul class=\"menu sf-arrows\"><li><a href=\"/shop\" class=\"\" style=\"text-transform:none\">Shop</a></li><li><a href=\"/about\" class=\"\" style=\"text-transform:none\">About</a></li><li><a href=\"#\" class=\"\" style=\"text-transform:none\">Contact</a></li></ul><!-- End .menu --></nav><!-- End .main-nav --></div><!-- End .header-left --><div class=\"header-right\"><div class=\"header-search header-search-extended header-search-visible\"><a href=\"#\" class=\"search-toggle\" role=\"button\"><i class=\"icon-search\"></i></a><form action=\"#\" method=\"get\"><div class=\"header-search-wrapper search-wrapper-wide\"><label for=\"q\" class=\"sr-only\">Search</label> <input type=\"search\" class=\"form-control\" name=\"q\" id=\"q\" placeholder=\"Search product ...\" required> <button class=\"btn btn-primary\" type=\"submit\"><i class=\"icon-search\"></i></button></div><!-- End .header-search-wrapper --></form></div><!-- End .header-search --><div class=\"dropdown cart-dropdown\"><a href=\"#\" class=\"dropdown-toggle\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" data-display=\"static\"><i class=\"icon-shopping-cart\"></i> <span class=\"cart-count\" style=\"margin-left: -1rem; margin-top: -1rem;\">2</span></a><div class=\"dropdown-menu dropdown-menu-right\"><div class=\"dropdown-cart-products\"><div class=\"product\"><div class=\"product-cart-details\"><h4 class=\"product-title\"><a href=\"#\">Sikka Baby Blue</a></h4><span class=\"cart-product-info\"><span class=\"cart-product-qty\">1</span> x Rp379.000</span></div><!-- End .product-cart-details --><figure class=\"product-image-container\"><a href=\"#\" class=\"product-image\"><img src=\"assets/images/products/cart/product-3.jpg\" alt=\"product\"></a></figure><a href=\"#\" class=\"btn-remove\" title=\"Remove Product\"><i class=\"icon-close\"></i></a></div><!-- End .product --><div class=\"product\"><div class=\"product-cart-details\"><h4 class=\"product-title\"><a href=\"#\">Zayra Dusty Pink</a></h4><span class=\"cart-product-info\"><span class=\"cart-product-qty\">1</span> x Rp349.000</span></div><!-- End .product-cart-details --><figure class=\"product-image-container\"><a href=\"#\" class=\"product-image\"><img src=\"assets/images/products/cart/product-4.jpg\" alt=\"product\"></a></figure><a href=\"#\" class=\"btn-remove\" title=\"Remove Product\"><i class=\"icon-close\"></i></a></div><!-- End .product --></div><!-- End .cart-product --><div class=\"dropdown-cart-total\"><span>Total</span> <span class=\"cart-total-price\">Rp728.000</span></div><!-- End .dropdown-cart-total --><div class=\"dropdown-cart-action\"><a href=\"#\" class=\"btn btn-primary\">View Cart</a> <a href=\"#\" class=\"btn btn-outline-primary-2\"><span>Checkout</span><i class=\"icon-long-arrow-right\"></i></a></div><!-- End .dropdown-cart-total --></div><!-- End .dropdown-menu --></div><!-- End .cart-dropdown --></div><!-- End .header-right --></div><!-- End .container-fluid --></div><!-- End .header-middle --></header><!-- End .header -->")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
 var _ = templruntime.GeneratedTemplate
